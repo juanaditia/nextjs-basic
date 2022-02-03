@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
 
 export default function Main() {
+  // toggle button
   const [signupMode, setSignupMode] = useState(false);
 
   useEffect(() => {
     console.log('masok');
   }, [signupMode]);
   return (
+    // container
     <main className="relative h-screen bg-gray-100 w-full overflow-hidden">
+      {/* forms container */}
       <div className="flex justify-center items-center w-full h-full top-0 left-0">
+        {/* Sign in / Sign up */}
         <div className="grid grid-cols-1 shadow-costum shadow-gray-300 ">
           {/* Sign in */}
           <div

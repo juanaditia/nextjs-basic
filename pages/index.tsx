@@ -14,8 +14,21 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex justify-center items-center h-screen">
-        <h1>Home</h1>
+      <main className="flex justify-center items-center w-full h-full">
+        <div className="pt-[20%]">
+          <h1 className="ml-[25px] ">Home</h1>
+
+          <div className="">
+            <Link href={'/login'}>
+              <button
+                className="bg-sky-600 hover:bg-sky-700 border px-6 py-1 
+              rounded-full text-white"
+              >
+                Login
+              </button>
+            </Link>
+          </div>
+        </div>
       </main>
     </>
   );
