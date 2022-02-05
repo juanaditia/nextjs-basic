@@ -7,6 +7,7 @@ import { SignupQuery } from '../service/query';
 export default function signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [password1, setPassword1] = useState('');
   const [setRegister] = useMutation(SignupQuery);
 
   const router = useRouter();
@@ -16,10 +17,19 @@ export default function signup() {
     console.log('ok');
     console.log(username, password, ' : ini username password');
 
-    const result = await setRegister({
-      variables: { input: { username, password } },
-    });
-    console.log(result, ' : ini result');
+    if (password !== password1) {
+      console.log('password tidak sama');
+    } else {
+      const result = await setRegister({
+        variables: {
+          input: {
+            username,
+            password,
+          },
+        },
+      });
+      console.log(result, ' : ini result');
+    }
 
     // if (result.data) {
     //   console.log(result.data);
@@ -27,23 +37,6 @@ export default function signup() {
     //   console.log('error');
     // }
   };
-
-  // async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-  //   e.preventDefault();
-
-  //   const result = await setRegister({
-  //     variables: {
-  //       input: {
-  //         username,
-  //         password,
-  //       },
-  //     },
-  //   });
-
-  //   if (result.data) {
-  //     console.log(result.data);
-  //   }
-  // }
 
   return (
     <div className="relative h-screen bg-gray-100 w-full">
@@ -68,6 +61,14 @@ export default function signup() {
                     placeholder="Password"
                     value={password}
                     onChange={(i) => setPassword(i.target.value)}
+                  />
+
+                  <input
+                    type="text"
+                    className="px-4 py-1 my-2 rounded-lg border-2 text-center border-[#212121] "
+                    placeholder="Confrim Password"
+                    value={password1}
+                    onChange={(i) => setPassword1(i.target.value)}
                   />
                   <button
                     className="rounded-full bg-[#212121] transition duration-300 hover:bg-black

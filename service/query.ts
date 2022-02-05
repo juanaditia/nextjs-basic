@@ -12,8 +12,8 @@ export const LoginQuery = gql`
 `;
 
 export const SignupQuery = gql`
-  mutation signup($input: LoginUserInput!) {
-    signup(loginUserInput: $input) {
+  mutation signup($input: RegisterInput!) {
+    signup(RegisterInput: $input) {
       id
       username
       password
