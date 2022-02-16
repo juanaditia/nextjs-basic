@@ -18,7 +18,7 @@ export default function signup() {
     console.log(username, password, ' : ini username password');
 
     if (password !== password1) {
-      console.log('password tidak sama');
+      console.log('password tidak sama : ', password, password1);
     } else {
       const result = await setRegister({
         variables: {
@@ -43,10 +43,14 @@ export default function signup() {
       <div className="flex justify-center items-center w-full h-full top-0 left-0">
         <div className="shadow-costum shadow-gray-300">
           <div className="flex flex-row min-h-[420px] ">
-            <form method="post" onSubmit={register}>
-              <div className="p-6 lg:min-w-[375px] bg-white">
+            <form
+              className="lg:min-w-[375px] bg-white"
+              method="post"
+              onSubmit={register}
+            >
+              <div className="p-6 ">
                 <h4 className=" my-5 text-3xl font-normal">Sign Up</h4>
-                <div id="form" className="flex flex-col gap-4 mt-16 px-6">
+                <div className="flex flex-col gap-2 mt-16 px-6">
                   <input
                     type="text"
                     className="px-4 py-1 my-2 rounded-lg border-2 text-center
@@ -71,8 +75,8 @@ export default function signup() {
                     onChange={(i) => setPassword1(i.target.value)}
                   />
                   <button
-                    className="rounded-full bg-[#212121] transition duration-300 hover:bg-black
-                   text-white py-2 "
+                    className="rounded-full bg-[#212121] transition duration-300 text-white 
+                    hover:text-[#ffc163] py-2  "
                     type="submit"
                   >
                     Sign Up
@@ -87,12 +91,14 @@ export default function signup() {
               bg-[#212121] text-white"
             >
               <div className="text-center">
-                <h4 className="text-3xl font-bold my-3">Welcome to Sign up</h4>
+                <h4 className="text-3xl font-bold my-3 text-[#ffc163] ">
+                  Welcome to Sign up
+                </h4>
                 <p className="mb-3"> have account? </p>
                 <Link href={'/login'}>
                   <button
                     className="bg-[#212121] text-white border-white border px-6 py-1 
-              rounded-full my-4 hover:bg-white hover:text-[#212121] "
+              rounded-full my-4 hover:border-[#ffc163] hover:text-[#ffc163] "
                   >
                     Sign In
                   </button>

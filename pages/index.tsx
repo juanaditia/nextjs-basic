@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 // import Image from 'next/image';
 import Link from 'next/link';
+import Navbar from '../components/navbar/Navbar';
 
 // import styles from '../styles/Home.module.css';
 
@@ -14,7 +15,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex justify-center items-center w-full h-full">
+      <main className="flex justify-center items-center">
+        {/* <Navbar /> */}
         <div className="pt-[20%]">
           <h1 className="ml-[25px] ">Home</h1>
 
