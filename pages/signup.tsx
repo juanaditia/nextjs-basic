@@ -5,6 +5,8 @@ import { FormEvent, useState } from 'react';
 import { toast } from 'react-toastify';
 import { SignupQuery } from '../service/query';
 
+import Swal from 'sweetalert2';
+
 interface DataType {
   username: string;
   password: string;
@@ -37,8 +39,12 @@ export default function signup() {
     }
 
     if (Values.password !== password1) {
-      // console.log('password tidak sama : ', password, password1);
-      return toast.error('your password not same');
+      Swal.fire({
+        title: 'Your password not same',
+        text: 'Please check again your confirm password',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+      });
     } else {
       const result = await setRegister({
         variables: {
@@ -51,8 +57,15 @@ export default function signup() {
       console.log(result, ' : ini result');
 
       if (result) {
-        toast.success('Now account is register time to login');
-        router.push('/login');
+        Swal.fire({
+          title: 'Create success',
+          text: 'Now you can login',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        }).then(() => {
+          router.push('/login');
+        });
+        // router.push('/login');
       }
     }
 
@@ -96,32 +109,110 @@ export default function signup() {
               <div className="p-6 ">
                 <h4 className=" my-5 text-3xl font-normal">Sign Up</h4>
                 <div className="flex flex-col gap-2 mt-16 px-6">
-                  <input
-                    type="text"
-                    className="px-4 py-1 my-2 rounded-lg border-2 text-center
-                     text-black border-[#212121] "
-                    placeholder="Username"
-                    name="username"
-                    value={Values.username}
-                    onChange={changeHandler}
-                  />
-                  <input
-                    type="text"
-                    className="px-4 py-1 my-2 rounded-lg border-2 text-center border-[#212121] "
-                    placeholder="Password"
-                    name="password"
-                    value={Values.password}
-                    onChange={changeHandler}
-                  />
+                  {/* input username*/}
+                  <div
+                    // className="px-4 py-1 my-2 rounded-lg border-2 text-center
+                    //  text-black border-[#212121] "
+                    className="relative text-gray-700"
+                  >
+                    <input
+                      className="w-full h-10 pl-8 pr-3 my-2 text-base placeholder-gray-600 
+                      border border-[#212121] rounded-lg focus:shadow-outline"
+                      type="text"
+                      placeholder="Username"
+                      name="username"
+                      value={Values.username}
+                      onChange={changeHandler}
+                    />
+                    <div className="absolute inset-y-0 left-0 flex items-center px-2 pointer-events-none">
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  {/* input username*/}
 
-                  <input
-                    type="text"
-                    className="px-4 py-1 my-2 rounded-lg border-2 text-center border-[#212121] "
-                    placeholder="Confrim Password"
-                    name="password1"
-                    value={password1}
-                    onChange={(i) => setPassword1(i.target.value)}
-                  />
+                  {/* input password */}
+                  <div
+                    // className="px-4 py-1 my-2 rounded-lg border-2 text-center
+                    //  text-black border-[#212121] "
+                    className="relative text-gray-700"
+                  >
+                    <input
+                      className="w-full h-10 pl-8 pr-3 my-2 text-base placeholder-gray-600 
+                      border border-[#212121] rounded-lg focus:shadow-outline"
+                      type="text"
+                      placeholder="Password"
+                      name="password"
+                      value={Values.password}
+                      onChange={changeHandler}
+                    />
+                    <div className="absolute inset-y-0 left-0 flex items-center px-2 pointer-events-none">
+                      <svg
+                        className="h-4 w-4"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        {' '}
+                        <rect
+                          x="3"
+                          y="11"
+                          width="18"
+                          height="11"
+                          rx="2"
+                          ry="2"
+                        />{' '}
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                      </svg>
+                    </div>
+                  </div>
+                  {/* input password */}
+
+                  {/* input confirm password */}
+                  <div
+                    // className="px-4 py-1 my-2 rounded-lg border-2 text-center
+                    //  text-black border-[#212121] "
+                    className="relative text-gray-700"
+                  >
+                    <input
+                      className="w-full h-10 pl-8 pr-3 my-2 text-base placeholder-gray-600 
+                      border border-[#212121] rounded-lg focus:shadow-outline"
+                      type="text"
+                      placeholder="Confrim Password"
+                      name="password1"
+                      value={password1}
+                      onChange={(i) => setPassword1(i.target.value)}
+                    />
+                    <div className="absolute inset-y-0 left-0 flex items-center px-2 pointer-events-none">
+                      <svg
+                        className="h-4 w-4"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        {' '}
+                        <rect
+                          x="3"
+                          y="11"
+                          width="18"
+                          height="11"
+                          rx="2"
+                          ry="2"
+                        />{' '}
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                      </svg>
+                    </div>
+                  </div>
+                  {/* input confirm password */}
+
                   <button
                     className="rounded-full bg-[#212121] transition duration-300 text-white 
                     hover:text-[#ffc163] py-2  "
